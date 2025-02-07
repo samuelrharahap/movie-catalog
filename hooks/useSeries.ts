@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 
 export function useSeriesOfTheWeek() {
   return useQuery({
-    queryKey: ['top-rated-series'],
+    queryKey: ['top-rated-series-week'],
     queryFn: () => fetchFromAPI<TMDBResponse<Series>>('/trending/tv/week'),
   });
 }

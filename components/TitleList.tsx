@@ -5,7 +5,7 @@ import type { Movie, Series } from '@/types/movies';
 interface TitleListProps {
   isLoading: boolean;
   isError: boolean;
-  data?: Movie[] | Series[];
+  data?: (Movie | Series)[];
 }
 
 const IMAGE_BASE_URL = process.env.NEXT_PUBLIC_TMDB_IMAGE_BASE_URL;

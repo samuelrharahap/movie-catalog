@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 
 export function useMoviesOfTheWeek() {
   return useQuery({
-    queryKey: ['top-rated-movies'],
+    queryKey: ['top-rated-movies-week'],
     queryFn: () => fetchFromAPI<TMDBResponse<Movie>>('/trending/movie/week'),
   });
 }

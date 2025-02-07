@@ -4,7 +4,7 @@ import { useSeriesOfTheWeek } from '@/hooks/useSeries';
 
 import TitleList from '@/components/TitleList';
 
-export default function ListTitle() {
+export default function SeriesOfTheWeek() {
   const { data, isLoading, isError } = useSeriesOfTheWeek();
 
   return (

@@ -4,7 +4,7 @@ import { useMoviesOfTheWeek } from '@/hooks/useMovies';
 
 import TitleList from '@/components/TitleList';
 
-export default function ListTitle() {
+export default function MoviesOfTheWeek() {
   const { data, isLoading, isError } = useMoviesOfTheWeek();
 
   return (
