@@ -18,6 +18,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+li {
+  list-style: none;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -33,7 +37,7 @@ body {
 }
 
 .aspect-16\/9 {
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16 / 8;
 }
 
 .w-full {
@@ -71,10 +75,123 @@ body {
   background-color: #ffffff;
 }
 
+.button {
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  color: var(--foreground);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.button:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.button-detail {
+  width: 100%;
+}
+
+.button-add-to-watch-list {
+  min-width: 3rem;
+  font-size: 1.5rem;
+  padding: 0.688rem 1rem;
+}
+
+.sidebar__container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  transition: all 0.5s;
+}
+
+.sidebar__logo {
+  position: fixed;
+  top: 1rem;
+}
+
+.sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1.2rem;
+}
+
+.sidebar__nav-link {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--foreground);
+  text-decoration: none;
+}
+
+.sidebar__nav-link > span {
+  text-indent: -2rem;
+  opacity: 0;
+  transition: all 0.5s;
+}
+
+.sidebar__nav:hover .sidebar__nav-link > span {
+  text-indent: 0;
+  opacity: 1;
+}
+
+.sidebar__icon {
+  opacity: 0.5;
+  transition: all 0.5s;
+}
+
+.sidebar__nav:hover .sidebar__icon {
+  opacity: 1;
+}
+
+.sidebar__background {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: -30rem;
+  bottom: 0;
+  width: 30rem;
+  background: linear-gradient(to right, #0f1014, transparent);
+  z-index: -1;
+  transition: all 0.5s;
+}
+
+.sidebar__nav:hover + .sidebar__background {
+  left: 0;
+}
+
+.home-banner__container {
+  position: relative;
+  aspect-ratio: 16 / 8;
+}
+
+.home-banner__list {
+  position: absolute;
+  width: 100%;
+  transition: all 0.5s;
+  aspect-ratio: 16 / 8;
+  opacity: 0;
+}
+
+.home-banner__list.active {
+  opacity: 1;
+}
+
 .home-banner__caption {
   position: absolute;
-  bottom: 35%;
-  left: 50px;
+  bottom: 25%;
+  left: 100px;
   max-width: 430px;
   padding: var(--default-spacing);
   z-index: 1;
@@ -110,30 +227,4 @@ body {
   background-color: rgba(255, 255, 255, 0.2);
   padding: 0.5rem;
   border-radius: 0.5rem;
-}
-
-.button {
-  background-color: rgba(255, 255, 255, 0.4);
-  padding: 1rem;
-  border-radius: 0.5rem;
-  border: none;
-  color: var(--foreground);
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.5s;
-}
-
-.button:hover {
-  background-color: rgba(255, 255, 255, 0.5);
-}
-
-.button-detail {
-  width: 100%;
-}
-
-.button-add-to-watch-list {
-  min-width: 3rem;
-  font-size: 1.5rem;
-  padding: 0.688rem 1rem;
 }

@@ -30,19 +30,17 @@ export default function HomeBannerClient({ items }: { items: (Movie | TVShow)[] 
 
   return (
     <ul
-      className="relative aspect-16/9"
+      className="home-banner__container"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
       {items.map((item, index) => (
-        <li
-          key={item.id}
-          className={`absolute w-full transition-all aspect-16/9 ${index === activeIndex ? 'opacity-100' : 'opacity-0'}`}
-        >
+        <li key={item.id} className={`home-banner__list ${index === activeIndex ? 'active' : ''}`}>
           <Image
             src={`${IMAGE_BASE_URL}/w1280${item.backdrop_path}`}
             alt={'title' in item ? item.title : item.name}
             fill
+            style={{ objectFit: 'cover' }}
             priority={index === 0} // Prioritize first item
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
           />
