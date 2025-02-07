@@ -1,13 +1,7 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #0f1014;
+  --foreground: #ffffff;
+  --default-spacing: 1.5rem;
 }
 
 html,
@@ -19,7 +13,7 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -30,13 +24,116 @@ body {
   margin: 0;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.relative {
+  position: relative;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+.absolute {
+  position: absolute;
+}
+
+.aspect-16\/9 {
+  aspect-ratio: 16 / 9;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.opacity-100 {
+  opacity: 1;
+}
+
+.opacity-0 {
+  opacity: 0;
+}
+
+.transition-all {
+  transition: all 0.5s;
+}
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.circle-divider {
+  width: 4px;
+  height: 4px;
+  border-radius: 100%;
+  background-color: #ffffff;
+}
+
+.home-banner__caption {
+  position: absolute;
+  bottom: 35%;
+  left: 50px;
+  max-width: 430px;
+  padding: var(--default-spacing);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.home-banner__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, #0f1014, transparent);
+}
+
+.home-banner__title {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.home-banner__meta {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.home-banner__overview {
+  line-height: 1.5rem;
+  font-weight: 500;
+}
+
+.home-banner__rating {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.button {
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  color: var(--foreground);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.button:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.button-detail {
+  width: 100%;
+}
+
+.button-add-to-watch-list {
+  min-width: 3rem;
+  font-size: 1.5rem;
+  padding: 0.688rem 1rem;
 }
