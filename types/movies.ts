@@ -9,7 +9,7 @@ export interface Movie {
   release_date: string;
 }
 
-export interface TVShow {
+export interface Series {
   id: number;
   name: string;
   overview: string;

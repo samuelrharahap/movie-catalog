@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 interface ButtonDetailProps {
   id: number;
-  type: 'movie' | 'tv';
+  type: 'movie' | 'series';
 }
 
 export function ButtonDetail({ id, type }: ButtonDetailProps) {

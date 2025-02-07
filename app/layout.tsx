@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
+import ReactQueryProvider from '@/providers/ReactQueryProvider';
+
 import { SideBar } from '@/components/SideBar';
 
 import './globals.css';
@@ -24,7 +26,9 @@ export default function RootLayout({
     <html lang="en" className={inter.className}>
       <body>
         <SideBar />
-        <div>{children}</div>
+        <div className="main-container">
+          <ReactQueryProvider>{children}</ReactQueryProvider>
+        </div>
       </body>
     </html>
   );

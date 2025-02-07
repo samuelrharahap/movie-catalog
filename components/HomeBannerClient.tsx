@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 import Image from 'next/image';
 
-import { Movie, TVShow } from '@/types/movies';
+import { Movie, Series } from '@/types/movies';
 
 import { ButtonAddToWatchList } from '@/components/ButtonAddToWatchList';
 import { ButtonDetail } from '@/components/ButtonDetail';
@@ -14,7 +14,7 @@ import { formatNumber, toFixed } from '@/utils/number';
 
 const IMAGE_BASE_URL = process.env.NEXT_PUBLIC_TMDB_IMAGE_BASE_URL;
 
-export default function HomeBannerClient({ items }: { items: (Movie | TVShow)[] }) {
+export default function HomeBannerClient({ items }: { items: (Movie | Series)[] }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
@@ -36,14 +36,16 @@ export default function HomeBannerClient({ items }: { items: (Movie | TVShow)[] 
     >
       {items.map((item, index) => (
         <li key={item.id} className={`home-banner__list ${index === activeIndex ? 'active' : ''}`}>
-          <Image
-            src={`${IMAGE_BASE_URL}/w1280${item.backdrop_path}`}
-            alt={'title' in item ? item.title : item.name}
-            fill
-            style={{ objectFit: 'cover' }}
-            priority={index === 0} // Prioritize first item
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
-          />
+          <div className="home-banner__image">
+            <Image
+              src={`${IMAGE_BASE_URL}/w1280${item.backdrop_path}`}
+              alt={'title' in item ? item.title : item.name}
+              fill
+              style={{ objectFit: 'cover' }}
+              priority={index === 0} // Prioritize first item
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+            />
+          </div>
           <div className="home-banner__overlay">
             <div className="home-banner__caption">
               <h2 className="home-banner__title">{'title' in item ? item.title : item.name}</h2>
@@ -60,7 +62,7 @@ export default function HomeBannerClient({ items }: { items: (Movie | TVShow)[] 
               </div>
               <p className="home-banner__overview">{item.overview}</p>
               <div className="flex w-full items-center gap-2">
-                <ButtonDetail id={item.id} type={'title' in item ? 'movie' : 'tv'} />
+                <ButtonDetail id={item.id} type={'title' in item ? 'movie' : 'series'} />
                 <ButtonAddToWatchList id={item.id} />
               </div>
             </div>

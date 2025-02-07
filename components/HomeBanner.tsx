@@ -1,4 +1,4 @@
-import { Movie, TMDBResponse, TVShow } from '@/types/movies';
+import { Movie, Series, TMDBResponse } from '@/types/movies';
 
 import HomeBannerClient from '@/components/HomeBannerClient';
 
@@ -17,7 +17,7 @@ async function getTopRatedMoviesAndSeries() {
     }
 
     const moviesData: TMDBResponse<Movie> = await moviesResponse.json();
-    const seriesData: TMDBResponse<TVShow> = await seriesResponse.json();
+    const seriesData: TMDBResponse<Series> = await seriesResponse.json();
 
     return {
       movies: moviesData.results.slice(0, 5),
