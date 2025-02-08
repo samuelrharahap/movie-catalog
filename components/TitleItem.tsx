@@ -8,6 +8,7 @@ import TitleHoverCard from '@/components/TitleHoverCard';
 
 interface TitleItem {
   data: Movie | Series;
+  isFixWidth?: boolean;
   prevButtonRef?: React.RefObject<HTMLDivElement | null>;
   nextButtonRef?: React.RefObject<HTMLDivElement | null>;
 }
@@ -17,7 +18,7 @@ const DEFAULT_HOVER_CARD_SPACE = 53;
 // const DEFAULT_ITEM_WIDTH = 185;
 const START_POSITION = 100;
 
-export default function TitleItem({ data, prevButtonRef, nextButtonRef }: TitleItem) {
+export default function TitleItem({ data, isFixWidth, prevButtonRef, nextButtonRef }: TitleItem) {
   const itemRef = useRef<HTMLDivElement>(null);
   const isShowingPrevButton = !!prevButtonRef?.current;
   const isShowingNextButton = !!nextButtonRef?.current;
@@ -78,12 +79,23 @@ export default function TitleItem({ data, prevButtonRef, nextButtonRef }: TitleI
       onMouseEnter={() => onMouseEnter()}
       onMouseLeave={() => onMouseLeave()}
     >
-      <Image
-        src={`${IMAGE_BASE_URL}/w185${data.poster_path}`}
-        alt={'title' in data ? data.title : (data as Series).name}
-        width={185}
-        height={278}
-      />
+      {isFixWidth ? (
+        <Image
+          src={`${IMAGE_BASE_URL}/w185${data.poster_path}`}
+          alt={'title' in data ? data.title : (data as Series).name}
+          width={185}
+          height={278}
+        />
+      ) : (
+        <div className="aspect-ratio-2/3 relative">
+          <Image
+            src={`${IMAGE_BASE_URL}/w185${data.poster_path}`}
+            alt={'title' in data ? data.title : (data as Series).name}
+            fill
+            sizes="14vw"
+          />
+        </div>
+      )}
       {isHovered && (
         <TitleHoverCard
           item={data}

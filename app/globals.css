@@ -80,6 +80,18 @@ li {
   text-align: center;
 }
 
+.text-base {
+  font-size: 1rem;
+}
+
+.grid {
+  display: grid;
+}
+
+.grid-cols-7 {
+  grid-template-columns: repeat(7, 1fr);
+}
+
 .shimmer {
   background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
   background-size: 200% 100%;
@@ -150,6 +162,14 @@ li {
   padding: 0.8rem 1rem;
   display: flex;
   align-items: center;
+}
+
+.aspect-ratio-2\/3 {
+  aspect-ratio: 2 / 3;
+}
+
+.relative {
+  position: relative;
 }
 
 .sidebar__container {
@@ -474,7 +494,7 @@ li {
 }
 
 .main-container {
-  padding: 150px;
+  padding: 30px 150px;
 }
 
 .search-box {

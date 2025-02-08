@@ -77,6 +77,7 @@ export default function TitleList({ isLoading, isError, data }: TitleListProps) 
             {data?.map((movie) => (
               <li key={movie.id}>
                 <TitleItem
+                  isFixWidth={true}
                   data={movie}
                   prevButtonRef={prevButtonRef}
                   nextButtonRef={nextButtonRef}
