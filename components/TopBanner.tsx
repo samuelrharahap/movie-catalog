@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 
 import Image from 'next/image';
@@ -13,6 +15,7 @@ import { formatNumber, toFixed } from '@/utils/number';
 interface TopBannerProps {
   item: Movie | Series;
   index: number;
+  inDetailPage?: boolean;
 }
 
 const IMAGE_BASE_URL = process.env.NEXT_PUBLIC_TMDB_IMAGE_BASE_URL;
@@ -27,7 +30,7 @@ const getBackdropSize = () => {
   return 'w300'; // Small screens
 };
 
-export default function TopBanner({ item, index }: TopBannerProps) {
+export default function TopBanner({ item, index, inDetailPage }: TopBannerProps) {
   // Update backdrop size based on window width on client
   const [backdropSize, setBackdropSize] = useState('w1280'); // Default size
   useEffect(() => {
@@ -42,7 +45,7 @@ export default function TopBanner({ item, index }: TopBannerProps) {
   }, []);
 
   return (
-    <>
+    <div className="top-banner__container">
       <div className="top-banner__image">
         <Image
           src={`${IMAGE_BASE_URL}/${backdropSize}${item.backdrop_path}`}
@@ -55,7 +58,11 @@ export default function TopBanner({ item, index }: TopBannerProps) {
       </div>
       <div className="top-banner__overlay">
         <div className="top-banner__caption">
-          <h2 className="top-banner__title">{'title' in item ? item.title : item.name}</h2>
+          {inDetailPage ? (
+            <h1 className="top-banner__title">{'title' in item ? item.title : item.name}</h1>
+          ) : (
+            <h2 className="top-banner__title">{'title' in item ? item.title : item.name}</h2>
+          )}
           <div className="top-banner__meta">
             <span>
               {getYearFromDate('release_date' in item ? item.release_date : item.first_air_date)}
@@ -67,11 +74,11 @@ export default function TopBanner({ item, index }: TopBannerProps) {
           </div>
           <p className="top-banner__overview">{item.overview}</p>
           <div className="flex w-full items-center gap-2">
-            <ButtonDetail id={item.id} type={item.media_type} />
+            {!inDetailPage && <ButtonDetail id={item.id} type={'title' in item ? 'movie' : 'tv'} />}
             <ButtonAddToWatchList item={item} />
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

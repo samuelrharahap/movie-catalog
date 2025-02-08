@@ -8,3 +8,10 @@ export function useMoviesOfTheWeek() {
     queryFn: () => fetchFromAPI<TMDBResponse<Movie>>('/trending/movie/week'),
   });
 }
+
+export function useMovieDetail(id: number) {
+  return useQuery({
+    queryKey: ['movie-detail', id],
+    queryFn: () => fetchFromAPI<TMDBResponse<Movie>>(`/movie/${id}`),
+  });
+}

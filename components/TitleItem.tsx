@@ -40,12 +40,6 @@ export default function TitleItem({
     const leftPosition = rect.left;
     const viewportRightEdge = window.innerWidth;
 
-    console.log('rightPosition', rightPosition);
-    console.log('leftPosition', leftPosition);
-    console.log('viewportRightEdge', viewportRightEdge);
-    console.log('isShowingNextButton', isShowingNextButton);
-    console.log('isShowingPrevButton', isShowingPrevButton);
-
     if (isShowingNextButton && rightPosition + GAP_AREA >= viewportRightEdge) {
       return; // Element is too close to the right edge
     }

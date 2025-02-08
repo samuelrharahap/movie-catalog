@@ -259,12 +259,16 @@ li {
   position: absolute;
   width: 100%;
   transition: var(--transition);
-  aspect-ratio: 16 / 7;
   opacity: 0;
 }
 
 .home-banner__list.active {
   opacity: 1;
+}
+
+.top-banner__container {
+  position: relative;
+  aspect-ratio: 16 / 7;
 }
 
 .top-banner__caption {
