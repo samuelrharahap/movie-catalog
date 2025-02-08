@@ -1,7 +1,11 @@
 :root {
   --background: #0f1014;
+  --secondary-background: #16181f;
   --foreground: #ffffff;
+  --foreground-secondary: #8f98b2;
   --default-spacing: 1.5rem;
+  --border-radius: 0.25rem;
+  --transition: all 0.5s;
 }
 
 html,
@@ -52,11 +56,15 @@ li {
   margin-top: -5rem;
 }
 
+.uppercase {
+  text-transform: uppercase;
+}
+
 .shimmer {
   background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
   background-size: 200% 100%;
   animation: shimmer-animation 1.5s infinite linear;
-  border-radius: 0.25rem;
+  border-radius: var(--border-radius);
 }
 
 @keyframes shimmer-animation {
@@ -78,13 +86,13 @@ li {
 .button {
   background-color: rgba(255, 255, 255, 0.4);
   padding: 1rem;
-  border-radius: 0.5rem;
+  border-radius: var(--border-radius);
   border: none;
   color: var(--foreground);
   font-weight: 600;
   font-size: 1rem;
   cursor: pointer;
-  transition: all 0.5s;
+  transition: -var(transition);
 }
 
 .button:hover {
@@ -93,6 +101,11 @@ li {
 
 .button-detail {
   width: 100%;
+}
+
+.button.sm {
+  padding: 0.5rem;
+  font-size: 0.75rem;
 }
 
 .button-add-to-watch-list {
@@ -110,7 +123,7 @@ li {
   padding: 1rem;
   display: flex;
   align-items: center;
-  transition: all 0.5s;
+  transition: -var(transition);
 }
 
 .sidebar__logo {
@@ -138,7 +151,7 @@ li {
 .sidebar__nav-link > span {
   text-indent: -2rem;
   opacity: 0;
-  transition: all 0.5s;
+  transition: -var(transition);
 }
 
 .sidebar__nav:hover .sidebar__nav-link > span {
@@ -148,7 +161,7 @@ li {
 
 .sidebar__icon {
   opacity: 0.5;
-  transition: all 0.5s;
+  transition: -var(transition);
 }
 
 .sidebar__nav:hover .sidebar__icon {
@@ -164,7 +177,7 @@ li {
   width: 30rem;
   background: linear-gradient(to right, #0f1014, transparent);
   z-index: -1;
-  transition: all 0.5s;
+  transition: -var(transition);
 }
 
 .sidebar__nav:hover + .sidebar__background {
@@ -179,7 +192,7 @@ li {
 .home-banner__list {
   position: absolute;
   width: 100%;
-  transition: all 0.5s;
+  transition: -var(transition);
   aspect-ratio: 16 / 7;
   opacity: 0;
 }
@@ -228,12 +241,21 @@ li {
 .home-banner__overview {
   line-height: 1.5rem;
   font-weight: 500;
+  color: var(--foreground-secondary);
+}
+
+.home-banner__rating,
+.hover-card__content-rating {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: var(--border-radius);
 }
 
 .home-banner__rating {
-  background-color: rgba(255, 255, 255, 0.2);
   padding: 0.5rem;
-  border-radius: 0.5rem;
+}
+
+.hover-card__content-rating {
+  padding: 0.25rem;
 }
 
 .list-title {
@@ -251,6 +273,86 @@ li {
   overflow: auto;
 }
 
+.list-title__item {
+  position: relative;
+  cursor: pointer;
+}
+
 .list-title__item > img {
-  border-radius: 0.25rem;
+  border-radius: var(--border-radius);
+}
+
+.hover-card {
+  position: fixed;
+  cursor: pointer;
+  margin-top: -57.5px;
+  margin-left: -52.875px;
+  transition: -var(transition);
+  border-radius: var(--border-radius);
+  width: 300px;
+  background-color: var(--secondary-background);
+  z-index: 2;
+  opacity: 0;
+  transform: scale(0.9);
+  transition:
+    opacity 0.3s ease-out,
+    transform 0.3s ease-out;
+  pointer-events: none;
+}
+
+.hover-card.active {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.hover-card.animated {
+  animation: fadeInScale 0.3s ease-out forwards;
+}
+
+.hover-card__image {
+  aspect-ratio: 16 / 9;
+  position: relative;
+  border-top-right-radius: 0.5rem;
+  border-top-left-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.hover-card__content {
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.hover-card__content-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.hover-card__content-meta {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.hover-card__content-overview {
+  display: block;
+  max-height: calc(1.5em * 4); /* Limit to 4 lines */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.5em;
+  position: relative;
+  color: var(--foreground-secondary);
 }

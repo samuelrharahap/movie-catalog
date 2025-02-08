@@ -7,6 +7,8 @@ export interface Movie {
   vote_average: number;
   vote_count: number;
   release_date: string;
+  original_language: string;
+  media_type: 'movie';
 }
 
 export interface Series {
@@ -18,6 +20,8 @@ export interface Series {
   vote_average: number;
   vote_count: number;
   first_air_date: string;
+  original_language: string;
+  media_type: 'tv';
 }
 
 export interface TMDBResponse<T> {

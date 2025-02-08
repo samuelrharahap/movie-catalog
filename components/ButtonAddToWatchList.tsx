@@ -1,9 +1,10 @@
 interface ButtonAddToWatchListProps {
   id: number;
+  size?: 'sm' | '';
 }
 
-export function ButtonAddToWatchList({ id }: ButtonAddToWatchListProps) {
+export default function ButtonAddToWatchList({ id, size = '' }: ButtonAddToWatchListProps) {
   console.log(id);
 
-  return <button className="button button-add-to-watch-list">+</button>;
+  return <button className={`button button-add-to-watch-list ${size}`.trim()}>+</button>;
 }
