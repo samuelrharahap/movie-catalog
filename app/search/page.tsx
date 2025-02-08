@@ -5,8 +5,7 @@ import { useState } from 'react';
 import { useSearchTitles } from '@/hooks/useSearchTitles';
 import { useTrendingAll } from '@/hooks/useTrending';
 
-import ListTitle from '@/components/ListTitle';
-import ListTitleLoader from '@/components/ListTitleLoader';
+import ListTitleGrid from '@/components/ListTitleGrid';
 
 export default function SearchPage() {
   const [keyword, setKeyword] = useState('');
@@ -34,31 +33,23 @@ export default function SearchPage() {
       {keyword ? (
         <>
           <h2 className="text-base mb-4">Movies</h2>
-          {isLoadingMovies ? (
-            <ListTitleLoader />
-          ) : isErrorMovies ? (
-            <p>Error loading movies</p>
-          ) : !movies?.results?.length ? (
-            <p>No movies found</p>
-          ) : (
-            <ListTitle data={movies?.results || []} />
-          )}
+          <ListTitleGrid
+            isLoading={isLoadingMovies}
+            isError={isErrorMovies}
+            data={movies?.results || []}
+          />
           <h2 className="text-base mb-4 mt-8">Series</h2>
-          {isLoadingSeries ? (
-            <ListTitleLoader />
-          ) : isErrorSeries ? (
-            <p>Error loading series</p>
-          ) : !series?.results?.length ? (
-            <p>No series found</p>
-          ) : (
-            <ListTitle data={series?.results || []} />
-          )}
+          <ListTitleGrid
+            isLoading={isLoadingSeries}
+            isError={isErrorSeries}
+            data={series?.results || []}
+          />
         </>
       ) : (
         trendingAll?.results && (
           <>
             <h1 className="text-base mb-4">Popular Searches</h1>
-            <ListTitle data={trendingAll.results} isFixWidth={false} />
+            <ListTitleGrid data={trendingAll.results} isFixWidth={false} />
           </>
         )
       )}

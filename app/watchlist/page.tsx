@@ -4,8 +4,8 @@ import { useMemo, useState } from 'react';
 
 import { useWatchlist } from '@/store/watchlistStore';
 
-import ListTitle from '@/components/ListTitle';
-import ListTitleLoader from '@/components/ListTitleLoader';
+import ListTitleGrid from '@/components/ListTitleGrid';
+import ListTitleGridLoader from '@/components/ListTitleGridLoader';
 
 export default function WatchlistPage() {
   const [keyword, setKeyword] = useState('');
@@ -32,14 +32,10 @@ export default function WatchlistPage() {
         onChange={(e) => setKeyword(e.target.value)}
       />
       {!loaded ? (
-        <ListTitleLoader />
-      ) : !filteredData.length ? (
-        <div className="text-center">
-          <p> No Watchlist was found</p>
-        </div>
+        <ListTitleGridLoader />
       ) : (
         <>
-          <ListTitle data={filteredData} showRemoveWatchlist={true} />
+          <ListTitleGrid data={filteredData} showRemoveWatchlist={true} />
           {!!getTotalDeleteItem() && (
             <div className="text-center mb-4">
               <button className="button danger" onClick={onConfirmDelete}>

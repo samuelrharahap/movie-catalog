@@ -1,16 +1,37 @@
 import { useWatchlist } from '@/store/watchlistStore';
 import type { Movie, Series } from '@/types/movies';
 
+import ListTitleGridLoader from '@/components/ListTitleGridLoader';
 import TitleItem from '@/components/TitleItem';
 
 interface ListTitleProps {
   data: (Movie | Series)[];
+  isLoading?: boolean;
+  isError?: boolean;
   isFixWidth?: boolean;
   showRemoveWatchlist?: boolean;
 }
 
-export default function ListTitle({ data, isFixWidth, showRemoveWatchlist }: ListTitleProps) {
+export default function ListTitle({
+  data,
+  isLoading,
+  isError,
+  isFixWidth,
+  showRemoveWatchlist,
+}: ListTitleProps) {
   const { isInRemoveWatchlist, toggleRemoveWatchlist } = useWatchlist();
+
+  if (isLoading) {
+    return <ListTitleGridLoader />;
+  }
+
+  if (isError) {
+    return <p>Error loading data</p>;
+  }
+
+  if (!data.length) {
+    return <p>No data found</p>;
+  }
 
   return (
     <ul className="grid grid-cols-7 gap-2">
