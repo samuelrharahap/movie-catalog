@@ -25,13 +25,17 @@ export default function HomeBannerPagination({
           className={`home-banner__pagination ${index === activeIndex ? 'active' : ''}`}
           onClick={() => setActiveIndex(index)}
         >
-          <Image
-            src={`${IMAGE_BASE_URL}/w300${item.backdrop_path}`}
-            alt={'title' in item ? item.title : item.name}
-            width={74}
-            height={42}
-            style={{ objectFit: 'cover' }}
-          />
+          {item.backdrop_path ? (
+            <Image
+              src={`${IMAGE_BASE_URL}/w300${item.backdrop_path}`}
+              alt={'title' in item ? item.title : item.name}
+              width={74}
+              height={42}
+              style={{ objectFit: 'cover' }}
+            />
+          ) : (
+            <div className="not-found-image">No Image</div>
+          )}
         </li>
       ))}
     </ul>
