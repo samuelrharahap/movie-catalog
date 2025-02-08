@@ -8,7 +8,6 @@ interface ListTitleProps {
   data: (Movie | Series)[];
   isLoading?: boolean;
   isError?: boolean;
-  isFixWidth?: boolean;
   showRemoveWatchlist?: boolean;
 }
 
@@ -16,7 +15,6 @@ export default function ListTitle({
   data,
   isLoading,
   isError,
-  isFixWidth,
   showRemoveWatchlist,
 }: ListTitleProps) {
   const { isInRemoveWatchlist, toggleRemoveWatchlist } = useWatchlist();
@@ -37,7 +35,7 @@ export default function ListTitle({
     <ul className="grid grid-cols-7 gap-2">
       {data.map((item) => (
         <li key={`${item.id}-${item.backdrop_path}`}>
-          <TitleItem data={item} isFixWidth={isFixWidth} />
+          <TitleItem data={item} />
           {showRemoveWatchlist && (
             <button
               className={`button sm mt-2 mb-4 w-full ${isInRemoveWatchlist(item) ? 'danger' : ''}`.trim()}

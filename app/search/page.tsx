@@ -49,7 +49,7 @@ export default function SearchPage() {
         trendingAll?.results && (
           <>
             <h1 className="text-base mb-4">Popular Searches</h1>
-            <ListTitleGrid data={trendingAll.results} isFixWidth={false} />
+            <ListTitleGrid data={trendingAll.results} />
           </>
         )
       )}
