@@ -59,7 +59,7 @@ export default function TitleHoverCard({
         <div className="hover-card__content-title">{title}</div>
         <div className="flex w-full items-center gap-2 mb-4">
           <ButtonDetail size="sm" variant="white" id={item.id} type={item.media_type} />
-          <ButtonAddToWatchList size="sm" id={item.id} />
+          <ButtonAddToWatchList size="sm" item={item} />
         </div>
         <div className="hover-card__content-meta">
           <span>

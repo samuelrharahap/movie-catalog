@@ -32,7 +32,6 @@ export default function TitleList({ isLoading, isError, data }: TitleListProps) 
 
     const containerWidth = viewPortRef.current.clientWidth;
     const totalItemsWidth = data.length * TOTAL_ITEM_WIDTH; // Includes gap
-    console.log(totalItemsWidth, containerWidth);
     setMaxScroll(Math.max(0, totalItemsWidth - containerWidth + EXCLUDE_GAP)); // Prevent negative overflow
   }, [data]);
 

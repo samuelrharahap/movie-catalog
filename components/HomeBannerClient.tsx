@@ -63,7 +63,7 @@ export default function HomeBannerClient({ items }: { items: (Movie | Series)[] 
               <p className="home-banner__overview">{item.overview}</p>
               <div className="flex w-full items-center gap-2">
                 <ButtonDetail id={item.id} type={item.media_type} />
-                <ButtonAddToWatchList id={item.id} />
+                <ButtonAddToWatchList item={item} />
               </div>
             </div>
           </div>
