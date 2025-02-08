@@ -20,8 +20,8 @@ async function getTopRatedMoviesAndSeries() {
     const seriesData: TMDBResponse<Series> = await seriesResponse.json();
 
     return {
-      movies: moviesData.results.slice(0, 5),
-      series: seriesData.results.slice(0, 5),
+      movies: moviesData.results.slice(0, 3),
+      series: seriesData.results.slice(0, 2),
     };
   } catch (error) {
     console.error('Error fetching movies and series:', error);

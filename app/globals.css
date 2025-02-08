@@ -268,6 +268,27 @@ li {
   padding: 0.5rem;
 }
 
+.home-banner__pagination-container {
+  position: absolute;
+  z-index: 1;
+  bottom: 50px;
+  right: 50px;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.home-banner__pagination {
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  border: 1px solid transparent;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.home-banner__pagination.active {
+  border: 1px solid #ffffff;
+}
+
 .hover-card__content-rating {
   padding: 0.25rem;
 }
