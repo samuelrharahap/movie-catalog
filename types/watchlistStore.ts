@@ -1,9 +1,9 @@
-import type { Movie, Series } from '@/types/movies';
+import { Movie, Series } from '@/types/movies';
 
-export interface Watchlist {
-  movie: Record<number, Movie>;
-  tv: Record<number, Series>;
-}
+export type Watchlist = {
+  movie: Map<number, Movie>;
+  tv: Map<number, Series>;
+};
 
 export interface WatchlistStore {
   watchlist: Watchlist;

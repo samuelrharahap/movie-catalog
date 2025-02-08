@@ -10,39 +10,38 @@ export const getType = (item: Movie | Series) =>
   item.media_type ?? ('title' in item ? 'movie' : 'tv');
 
 const useWatchlistStore = create<WatchlistStore>((set, get) => ({
-  watchlist: { movie: {}, tv: {} },
+  watchlist: { movie: new Map(), tv: new Map() },
 
   toggleWatchlist: (item) => {
     set((state) => {
       const type = getType(item);
+      const newMap = new Map<number, typeof item>(state.watchlist[type]);
 
-      if (state.watchlist[type][item.id]) {
-        const newWatchlist = { ...state.watchlist };
-        delete newWatchlist[type][item.id];
-        if (typeof window !== 'undefined') {
-          localStorage.setItem(WATCHLIST_KEY, JSON.stringify(newWatchlist));
-        }
-        return { watchlist: newWatchlist };
+      if (newMap.has(item.id)) {
+        newMap.delete(item.id);
+      } else {
+        newMap.set(item.id, item);
       }
 
-      const newWatchlist = { ...state.watchlist };
-      newWatchlist[type][item.id] = item;
+      const updatedWatchlist = { ...state.watchlist, [type]: newMap };
+
       if (typeof window !== 'undefined') {
-        localStorage.setItem(WATCHLIST_KEY, JSON.stringify(newWatchlist));
+        localStorage.setItem(
+          WATCHLIST_KEY,
+          JSON.stringify({
+            movie: Array.from(updatedWatchlist.movie.entries()),
+            tv: Array.from(updatedWatchlist.tv.entries()),
+          })
+        );
       }
-      return { watchlist: newWatchlist };
+
+      return { watchlist: updatedWatchlist };
     });
   },
 
-  isInWatchlist: (item) => {
-    const type = getType(item);
-    return !!get().watchlist[type][item.id];
-  },
+  isInWatchlist: (item) => get().watchlist[getType(item)].has(item.id),
 
-  isWatchlistEmpty: () => {
-    const { movie, tv } = get().watchlist;
-    return Object.keys(movie).length + Object.keys(tv).length === 0;
-  },
+  isWatchlistEmpty: () => get().watchlist.movie.size + get().watchlist.tv.size === 0,
 }));
 
 export function useWatchlist() {
@@ -51,10 +50,16 @@ export function useWatchlist() {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const storedWatchlist = JSON.parse(
-        localStorage.getItem(WATCHLIST_KEY) || '{"movie":{},"tv":{}}'
-      );
-      useWatchlistStore.setState({ watchlist: storedWatchlist });
+      const storedWatchlist = localStorage.getItem(WATCHLIST_KEY);
+      if (storedWatchlist) {
+        const parsed = JSON.parse(storedWatchlist);
+        useWatchlistStore.setState({
+          watchlist: {
+            movie: new Map(parsed.movie),
+            tv: new Map(parsed.tv),
+          },
+        });
+      }
       setLoaded(true);
     }
   }, []);
