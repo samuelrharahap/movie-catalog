@@ -14,11 +14,17 @@ interface TitleHoverCardProps {
   item: Movie | Series;
   active: boolean;
   isLeftMost: boolean;
+  isRightMost: boolean;
 }
 
 const IMAGE_BASE_URL = process.env.NEXT_PUBLIC_TMDB_IMAGE_BASE_URL;
 
-export default function TitleHoverCard({ item, active, isLeftMost }: TitleHoverCardProps) {
+export default function TitleHoverCard({
+  item,
+  active,
+  isLeftMost,
+  isRightMost,
+}: TitleHoverCardProps) {
   const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
@@ -34,6 +40,7 @@ export default function TitleHoverCard({ item, active, isLeftMost }: TitleHoverC
         'hover-card',
         active && 'active',
         isLeftMost && 'left-most',
+        isRightMost && 'right-most',
         animate && 'animated',
       ]
         .filter(Boolean)
@@ -44,6 +51,7 @@ export default function TitleHoverCard({ item, active, isLeftMost }: TitleHoverC
           src={`${IMAGE_BASE_URL}/w300${item.backdrop_path}`}
           alt={title}
           fill
+          sizes="(max-width: 768px) 100vw"
           style={{ objectFit: 'cover' }}
         />
       </div>

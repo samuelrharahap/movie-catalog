@@ -83,6 +83,14 @@ li {
   background-color: #ffffff;
 }
 
+.overflow-visible {
+  overflow: visible !important;
+}
+
+.opacity-0 {
+  opacity: 0 !important;
+}
+
 .button {
   background-color: rgba(255, 255, 255, 0.4);
   padding: 1rem;
@@ -263,14 +271,32 @@ li {
   z-index: 1;
   position: relative;
   padding-left: 100px;
-  padding-bottom: 3rem;
+  padding-bottom: 4rem;
+}
+
+.list-title__viewport {
+  overflow: visible;
+  position: relative;
+}
+
+.list-title__viewport::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100px;
+  width: 100px;
+  bottom: 0;
+  background-color: #0f1014;
+  z-index: 2;
 }
 
 .list-title__container {
   display: flex;
   flex-wrap: nowrap;
   gap: 0.5rem;
-  overflow: visible;
+  transition: var(--transition);
+  position: relative;
+  z-index: 1;
 }
 
 .list-title__item {
@@ -278,8 +304,36 @@ li {
   cursor: pointer;
 }
 
+.list-title__item.hovered {
+  z-index: 2;
+}
+
 .list-title__item > img {
   border-radius: var(--border-radius);
+}
+
+.list-title__pagination-next,
+.list-title__pagination-prev {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  z-index: 1;
+  cursor: pointer;
+  opacity: 1;
+  transition: var(--transition);
+}
+
+.list-title__pagination-prev {
+  left: 0;
+  background: linear-gradient(to right, #0f1014, transparent);
+}
+
+.list-title__pagination-next {
+  right: 0;
+  background: linear-gradient(to left, #0f1014, transparent);
 }
 
 .hover-card {
@@ -290,8 +344,7 @@ li {
   transition: var(--transition);
   border-radius: var(--border-radius);
   width: 300px;
-  background-color: var(--secondary-background);
-  z-index: 2;
+  z-index: 3;
   opacity: 0;
   transform: scale(0.9);
   transition:
@@ -308,6 +361,11 @@ li {
 
 .hover-card.left-most {
   left: 0;
+}
+
+.hover-card.right-most {
+  right: 0;
+  left: auto;
 }
 
 @keyframes fadeInScale {
@@ -334,10 +392,11 @@ li {
 }
 
 .hover-card__content {
-  padding: 0.5rem 0.75rem;
+  padding: 0.75rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  background-color: var(--secondary-background);
 }
 
 .hover-card__content-title {
@@ -353,10 +412,10 @@ li {
 
 .hover-card__content-overview {
   display: block;
-  max-height: calc(1.5em * 4); /* Limit to 4 lines */
+  max-height: calc(1.5rem * 4); /* Limit to 4 lines */
   overflow: hidden;
   text-overflow: ellipsis;
-  line-height: 1.5em;
+  line-height: 1.5rem;
   position: relative;
   color: var(--foreground-secondary);
 }

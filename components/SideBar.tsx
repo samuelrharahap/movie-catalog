@@ -38,9 +38,9 @@ export function SideBar() {
           <li>
             <Link href="/watch-list" className="sidebar__nav-link">
               <Image
-                src="/icon-search.svg"
+                src="/icon-watch-list.svg"
                 className="sidebar__icon"
-                alt="search"
+                alt="watch-list"
                 width={24}
                 height={24}
               />
