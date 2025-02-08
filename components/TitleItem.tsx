@@ -10,17 +10,22 @@ interface TitleItem {
   data: Movie | Series;
   prevButtonRef?: React.RefObject<HTMLDivElement | null>;
   nextButtonRef?: React.RefObject<HTMLDivElement | null>;
+  isShowingPrevButton?: boolean;
+  isShowingNextButton?: boolean;
 }
 
 const IMAGE_BASE_URL = process.env.NEXT_PUBLIC_TMDB_IMAGE_BASE_URL;
-const DEFAULT_HOVER_CARD_SPACE = 53;
-// const DEFAULT_ITEM_WIDTH = 185;
 const START_POSITION = 100;
+const GAP_AREA = 10;
 
-export default function TitleItem({ data, prevButtonRef, nextButtonRef }: TitleItem) {
+export default function TitleItem({
+  data,
+  prevButtonRef,
+  nextButtonRef,
+  isShowingPrevButton,
+  isShowingNextButton,
+}: TitleItem) {
   const itemRef = useRef<HTMLDivElement>(null);
-  const isShowingPrevButton = !!prevButtonRef?.current;
-  const isShowingNextButton = !!nextButtonRef?.current;
 
   const [isHovered, setIsHovered] = useState(false);
   const [isLeftMost, setIsLeftMost] = useState(false);
@@ -35,15 +40,21 @@ export default function TitleItem({ data, prevButtonRef, nextButtonRef }: TitleI
     const leftPosition = rect.left;
     const viewportRightEdge = window.innerWidth;
 
-    if (isShowingNextButton && rightPosition >= viewportRightEdge) {
+    console.log('rightPosition', rightPosition);
+    console.log('leftPosition', leftPosition);
+    console.log('viewportRightEdge', viewportRightEdge);
+    console.log('isShowingNextButton', isShowingNextButton);
+    console.log('isShowingPrevButton', isShowingPrevButton);
+
+    if (isShowingNextButton && rightPosition + GAP_AREA >= viewportRightEdge) {
       return; // Element is too close to the right edge
     }
 
-    if (isShowingPrevButton && leftPosition < START_POSITION + DEFAULT_HOVER_CARD_SPACE) {
+    if (isShowingPrevButton && leftPosition <= START_POSITION + GAP_AREA) {
       return; // Element is too close to the left edge
     }
 
-    if (rightPosition + DEFAULT_HOVER_CARD_SPACE >= viewportRightEdge) {
+    if (rightPosition + GAP_AREA >= viewportRightEdge) {
       setIsRightMost(true);
     }
 
@@ -52,20 +63,20 @@ export default function TitleItem({ data, prevButtonRef, nextButtonRef }: TitleI
     }
 
     if (isShowingNextButton) {
-      nextButtonRef.current?.classList.add('opacity-0');
+      nextButtonRef?.current?.classList.add('opacity-0');
     }
     if (isShowingPrevButton) {
-      prevButtonRef.current?.classList.add('opacity-0');
+      prevButtonRef?.current?.classList.add('opacity-0');
     }
     setIsHovered(true);
   };
 
   const onMouseLeave = () => {
     if (isShowingNextButton) {
-      nextButtonRef.current?.classList.remove('opacity-0');
+      nextButtonRef?.current?.classList.remove('opacity-0');
     }
     if (isShowingPrevButton) {
-      prevButtonRef.current?.classList.remove('opacity-0');
+      prevButtonRef?.current?.classList.remove('opacity-0');
     }
     setIsHovered(false);
     setIsLeftMost(false);
