@@ -36,7 +36,7 @@ export function SideBar() {
             </Link>
           </li>
           <li>
-            <Link href="/watch-list" className="sidebar__nav-link">
+            <Link href="/watchlist" className="sidebar__nav-link">
               <Image
                 src="/icon-watch-list.svg"
                 className="sidebar__icon"
