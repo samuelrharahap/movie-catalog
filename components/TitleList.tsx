@@ -75,12 +75,13 @@ export default function TitleList({ isLoading, isError, data }: TitleListProps) 
             style={{ transform: `translateX(-${translateX}px)`, transition: 'transform 0.3s ease' }}
           >
             {data?.map((movie) => (
-              <TitleItem
-                key={movie.id}
-                data={movie}
-                prevButtonRef={prevButtonRef}
-                nextButtonRef={nextButtonRef}
-              />
+              <li key={movie.id}>
+                <TitleItem
+                  data={movie}
+                  prevButtonRef={prevButtonRef}
+                  nextButtonRef={nextButtonRef}
+                />
+              </li>
             ))}
           </ul>
           {isShowingPrevButton && (

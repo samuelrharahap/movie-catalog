@@ -8,8 +8,8 @@ import TitleHoverCard from '@/components/TitleHoverCard';
 
 interface TitleItem {
   data: Movie | Series;
-  prevButtonRef: React.RefObject<HTMLDivElement | null>;
-  nextButtonRef: React.RefObject<HTMLDivElement | null>;
+  prevButtonRef?: React.RefObject<HTMLDivElement | null>;
+  nextButtonRef?: React.RefObject<HTMLDivElement | null>;
 }
 
 const IMAGE_BASE_URL = process.env.NEXT_PUBLIC_TMDB_IMAGE_BASE_URL;
@@ -18,7 +18,7 @@ const DEFAULT_HOVER_CARD_SPACE = 53;
 const START_POSITION = 100;
 
 export default function TitleItem({ data, prevButtonRef, nextButtonRef }: TitleItem) {
-  const itemRef = useRef<HTMLLIElement>(null);
+  const itemRef = useRef<HTMLDivElement>(null);
   const isShowingPrevButton = !!prevButtonRef?.current;
   const isShowingNextButton = !!nextButtonRef?.current;
 
@@ -72,7 +72,7 @@ export default function TitleItem({ data, prevButtonRef, nextButtonRef }: TitleI
   };
 
   return (
-    <li
+    <div
       ref={itemRef}
       className={`list-title__item ${isHovered ? 'hovered' : ''}`}
       onMouseEnter={() => onMouseEnter()}
@@ -92,6 +92,6 @@ export default function TitleItem({ data, prevButtonRef, nextButtonRef }: TitleI
           isRightMost={isRightMost}
         />
       )}
-    </li>
+    </div>
   );
 }

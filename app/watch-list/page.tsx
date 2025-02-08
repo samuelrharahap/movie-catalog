@@ -1,8 +1,12 @@
+import Watchlist from '@/components/Watchlist';
+
 export default function WatchlistPage() {
   return (
-    <div>
-      <h1>Watchlist</h1>
-      <p>Here are the movies you are watching.</p>
+    <div className="main-container">
+      <div className="text-center mb-4">
+        <h1>Watchlist</h1>
+      </div>
+      <Watchlist />
     </div>
   );
 }

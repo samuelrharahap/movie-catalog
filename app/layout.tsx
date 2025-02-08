@@ -26,7 +26,7 @@ export default function RootLayout({
     <html lang="en" className={inter.className}>
       <body>
         <SideBar />
-        <div className="main-container">
+        <div>
           <ReactQueryProvider>{children}</ReactQueryProvider>
         </div>
       </body>

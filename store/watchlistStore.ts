@@ -6,7 +6,8 @@ import { create } from 'zustand';
 
 const WATCHLIST_KEY = 'user_watchlist';
 
-const getType = (item: Movie | Series) => item.media_type ?? ('title' in item ? 'movie' : 'tv');
+export const getType = (item: Movie | Series) =>
+  item.media_type ?? ('title' in item ? 'movie' : 'tv');
 
 const useWatchlistStore = create<WatchlistStore>((set, get) => ({
   watchlist: { movie: {}, tv: {} },
@@ -36,6 +37,11 @@ const useWatchlistStore = create<WatchlistStore>((set, get) => ({
   isInWatchlist: (item) => {
     const type = getType(item);
     return !!get().watchlist[type][item.id];
+  },
+
+  isWatchlistEmpty: () => {
+    const { movie, tv } = get().watchlist;
+    return Object.keys(movie).length + Object.keys(tv).length === 0;
   },
 }));
 
