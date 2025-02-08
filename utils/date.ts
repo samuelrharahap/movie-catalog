@@ -1,3 +1,3 @@
-export function getYearFromDate(date: string): number {
-  return new Date(date).getFullYear();
+export function getYearFromDate(date: string): string {
+  return date ? new Date(date).getFullYear().toString() : '-';
 }

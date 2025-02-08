@@ -88,12 +88,16 @@ export default function TitleItem({ data, isFixWidth, prevButtonRef, nextButtonR
         />
       ) : (
         <div className="aspect-ratio-2/3 relative">
-          <Image
-            src={`${IMAGE_BASE_URL}/w185${data.poster_path}`}
-            alt={'title' in data ? data.title : (data as Series).name}
-            fill
-            sizes="14vw"
-          />
+          {data.poster_path ? (
+            <Image
+              src={`${IMAGE_BASE_URL}/w185${data.poster_path}`}
+              alt={'title' in data ? data.title : (data as Series).name}
+              fill
+              sizes="14vw"
+            />
+          ) : (
+            <div className="not-found-image">No Image</div>
+          )}
         </div>
       )}
       {isHovered && (

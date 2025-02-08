@@ -47,13 +47,17 @@ export default function TitleHoverCard({
         .join(' ')}
     >
       <div className="hover-card__image">
-        <Image
-          src={`${IMAGE_BASE_URL}/w300${item.backdrop_path}`}
-          alt={title}
-          fill
-          sizes="(max-width: 768px) 100vw"
-          style={{ objectFit: 'cover' }}
-        />
+        {item.backdrop_path ? (
+          <Image
+            src={`${IMAGE_BASE_URL}/w300${item.backdrop_path}`}
+            alt={title}
+            fill
+            sizes="14vw"
+            style={{ objectFit: 'cover' }}
+          />
+        ) : (
+          <div className="not-found-image">No Image</div>
+        )}
       </div>
       <div className="hover-card__content">
         <div className="hover-card__content-title">{title}</div>
