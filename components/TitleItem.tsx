@@ -11,19 +11,30 @@ interface TitleItem {
 }
 
 const IMAGE_BASE_URL = process.env.NEXT_PUBLIC_TMDB_IMAGE_BASE_URL;
+const DEFAULT_HOVER_CARD_SPACE = 53;
+const START_POSITION = 100;
 
 export default function TitleItem({ data }: TitleItem) {
-  const [isHovered, setIsHovered] = useState(false);
-  const [position, setPosition] = useState({ top: 0, left: 0 });
   const itemRef = useRef<HTMLLIElement>(null);
 
-  const handleMouseEnter = () => {
-    if (itemRef.current) {
-      const rect = itemRef.current.getBoundingClientRect();
-      setPosition({
-        top: rect.top, // Adjust for scrolling
-        left: rect.left, // Adjust for scrolling
-      });
+  const [isHovered, setIsHovered] = useState(false);
+  const [isLeftMost, setIsLeftMost] = useState(false);
+
+  const onMouseEnter = () => {
+    // setIsHovered(true);
+    if (!itemRef.current) return;
+
+    const rect = itemRef.current.getBoundingClientRect();
+
+    const rightPosition = rect.right; // Distance from left edge of viewport
+    const viewportRightEdge = window.innerWidth; // Rightmost part of viewport
+    if (rightPosition + DEFAULT_HOVER_CARD_SPACE > viewportRightEdge) {
+      return; // Element is too close to the right edge
+    }
+
+    const leftPosition = rect.left; // Distance from left edge of viewport
+    if (leftPosition <= START_POSITION) {
+      setIsLeftMost(true); // Element is too close to the left edge
     }
     setIsHovered(true);
   };
@@ -32,7 +43,7 @@ export default function TitleItem({ data }: TitleItem) {
     <li
       ref={itemRef}
       className="list-title__item"
-      onMouseEnter={handleMouseEnter}
+      onMouseEnter={() => onMouseEnter()}
       onMouseLeave={() => setIsHovered(false)}
     >
       <Image
@@ -41,13 +52,7 @@ export default function TitleItem({ data }: TitleItem) {
         width={185}
         height={278}
       />
-      {isHovered && (
-        <TitleHoverCard
-          item={data}
-          style={{ top: position.top, left: position.left }}
-          active={isHovered}
-        />
-      )}
+      {isHovered && <TitleHoverCard item={data} active={isHovered} isLeftMost={isLeftMost} />}
     </li>
   );
 }

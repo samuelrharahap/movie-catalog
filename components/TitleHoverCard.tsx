@@ -12,13 +12,13 @@ import { formatNumber, toFixed } from '@/utils/number';
 
 interface TitleHoverCardProps {
   item: Movie | Series;
-  style: React.CSSProperties;
   active: boolean;
+  isLeftMost: boolean;
 }
 
 const IMAGE_BASE_URL = process.env.NEXT_PUBLIC_TMDB_IMAGE_BASE_URL;
 
-export default function TitleHoverCard({ item, style, active }: TitleHoverCardProps) {
+export default function TitleHoverCard({ item, active, isLeftMost }: TitleHoverCardProps) {
   const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
@@ -30,8 +30,14 @@ export default function TitleHoverCard({ item, style, active }: TitleHoverCardPr
   const title = 'title' in item ? item.title : item.name;
   return (
     <div
-      className={`hover-card ${active ? 'active' : ''} ${animate ? 'animated' : ''}`}
-      style={style}
+      className={[
+        'hover-card',
+        active && 'active',
+        isLeftMost && 'left-most',
+        animate && 'animated',
+      ]
+        .filter(Boolean)
+        .join(' ')}
     >
       <div className="hover-card__image">
         <Image
