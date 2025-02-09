@@ -388,6 +388,7 @@ li {
   position: relative;
   padding-left: 100px;
   padding-bottom: 4rem;
+  overflow-x: hidden;
 }
 
 .list-title-slider.recommendations {
@@ -793,7 +794,8 @@ li {
   }
 
   .top-banner__image,
-  .top-banner__container {
+  .top-banner__container,
+  .home-banner__container {
     aspect-ratio: 1 / 1;
   }
 }
