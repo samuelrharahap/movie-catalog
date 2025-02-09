@@ -37,7 +37,7 @@ export interface Movie {
   vote_count: number;
   release_date: string;
   original_language: string;
-  media_type: 'movie';
+  media_type?: 'movie';
   genres?: Genre[];
 }
 
@@ -51,7 +51,7 @@ export interface Series {
   vote_count: number;
   first_air_date: string;
   original_language: string;
-  media_type: 'tv';
+  media_type?: 'tv';
   genres?: Genre[];
   seasons?: Season[];
 }
