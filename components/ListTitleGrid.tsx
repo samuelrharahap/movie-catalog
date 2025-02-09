@@ -32,7 +32,7 @@ export default function ListTitle({
   }
 
   return (
-    <ul className="grid grid-cols-7 gap-2">
+    <ul className="list-title-grid gap-2">
       {data.map((item) => (
         <li key={`${item.id}-${item.backdrop_path}`}>
           <TitleItem data={item} />

@@ -7,18 +7,32 @@ import { useWatchlist } from '@/store/watchlistStore';
 import ListTitleGrid from '@/components/ListTitleGrid';
 import ListTitleGridLoader from '@/components/ListTitleGridLoader';
 
+/**
+ * WatchlistPage component renders the user's watchlist with search functionality.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered component.
+ *
+ * @returns {JSX.Element} The rendered component.
+ */
 export default function WatchlistPage() {
   const [keyword, setKeyword] = useState('');
 
+  // Use store to centralize the watchlist data and actions.
   const { watchlist, loaded, getTotalDeleteItem, onConfirmDelete } = useWatchlist();
-  const data = useMemo(() => [...watchlist.movie.values(), ...watchlist.tv.values()], [watchlist]);
-  const filteredData = useMemo(
-    () =>
-      data.filter((item) =>
-        ('title' in item ? item.title : item.name).toLowerCase().includes(keyword.toLowerCase())
-      ),
-    [data, keyword]
+
+  const data = useMemo(
+    () => [...watchlist.movie.values(), ...watchlist.tv.values()],
+    [watchlist.movie, watchlist.tv]
   );
+
+  // Filter the data based on the keyword.
+  const filteredData = useMemo(() => {
+    const lowerKeyword = keyword.toLowerCase();
+    return data.filter((item) =>
+      ('title' in item ? item.title : item.name).toLowerCase().includes(lowerKeyword)
+    );
+  }, [data, keyword]);
 
   return (
     <div className="main-container">
