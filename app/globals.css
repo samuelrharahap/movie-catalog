@@ -17,6 +17,7 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-size: 14px;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -397,7 +398,6 @@ li {
 }
 
 .list-title-slider__viewport {
-  overflow: visible;
   position: relative;
 }
 

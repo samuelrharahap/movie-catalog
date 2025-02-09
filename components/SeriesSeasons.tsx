@@ -2,11 +2,10 @@
 
 import { useState } from 'react';
 
-import Image from 'next/image';
-
 import { useSeriesSeason } from '@/hooks/useSeries';
 import type { Season } from '@/types/movies';
 
+import { ImageLoader } from '@/components/ImageLoader';
 import SeriesSeasonLoader from '@/components/SeriesSeasonLoader';
 
 import { toFixed } from '@/utils/number';
@@ -15,8 +14,6 @@ interface SeriesSeasonsProps {
   seriesId: number;
   seasons: Season[];
 }
-
-const IMAGE_BASE_URL = process.env.NEXT_PUBLIC_TMDB_IMAGE_BASE_URL;
 
 export default function SeriesSeasons({ seriesId, seasons }: SeriesSeasonsProps) {
   const [activeSeason, setActiveSeason] = useState(seasons[0]?.season_number ?? 1);
@@ -47,10 +44,11 @@ export default function SeriesSeasons({ seriesId, seasons }: SeriesSeasonsProps)
               <div>
                 <div className="series-seasons__episode-image">
                   {episode.still_path ? (
-                    <Image
-                      src={`${IMAGE_BASE_URL}/w342${episode.still_path}`}
+                    <ImageLoader
+                      url={episode.still_path}
+                      smallResolution="w45"
+                      normalResolution="w500"
                       alt={episode.name}
-                      fill
                       sizes="14vw"
                       style={{ objectFit: 'cover' }}
                     />
