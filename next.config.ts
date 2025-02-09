@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
         hostname: process.env.NEXT_TMDB_IMAGE_HOST ?? 'image.tmdb.org',
       },
     ],
+    unoptimized: true, // Disable static image optimization due to vercel OPTIMIZED_IMAGE_REQUEST_PAYMENT_REQUIRED
   },
 };
 
