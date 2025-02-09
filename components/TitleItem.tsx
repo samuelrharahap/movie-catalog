@@ -16,6 +16,19 @@ interface TitleItem {
 const START_POSITION = 100;
 const GAP_AREA = 10;
 
+/**
+ * A component that represents a title item with hover effects.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {Object} props.data - The data for the title item.
+ * @param {React.RefObject<HTMLButtonElement>} props.prevButtonRef - Reference to the previous button element.
+ * @param {React.RefObject<HTMLButtonElement>} props.nextButtonRef - Reference to the next button element.
+ * @param {boolean} props.isShowingPrevButton - Flag indicating if the previous button is showing.
+ * @param {boolean} props.isShowingNextButton - Flag indicating if the next button is showing.
+ *
+ * @returns {JSX.Element} The rendered title item component.
+ */
 export default function TitleItem({
   data,
   prevButtonRef,

@@ -10,6 +10,15 @@ interface ButtonAddToWatchListProps {
   size?: 'sm' | '';
 }
 
+/**
+ * ButtonAddToWatchList component allows users to add or remove an item from their watchlist.
+ *
+ * @component
+ * @param {ButtonAddToWatchListProps} props - The properties for the ButtonAddToWatchList component.
+ * @param {object} props.item - The item to be added or removed from the watchlist.
+ * @param {string} [props.size=''] - Optional size class for the button.
+ * @returns {JSX.Element} The rendered ButtonAddToWatchList component.
+ */
 export default function ButtonAddToWatchList({ item, size = '' }: ButtonAddToWatchListProps) {
   const { toggleWatchlist, isInWatchlist } = useWatchlist();
 

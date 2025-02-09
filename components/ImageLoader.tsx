@@ -13,6 +13,19 @@ interface ImageLoaderProps {
   normalResolution: string;
 }
 
+/**
+ * ImageLoader component that loads a lower-resolution placeholder image first,
+ * and then loads the normal resolution image once it is available.
+ *
+ * @param {string} url - The URL of the image to load.
+ * @param {string} alt - The alt text for the image.
+ * @param {string} sizes - The sizes attribute for the image.
+ * @param {React.CSSProperties} style - The style to apply to the image.
+ * @param {string} normalResolution - The path for the normal resolution image.
+ * @param {string} smallResolution - The path for the small resolution image.
+ *
+ * @returns {JSX.Element} The ImageLoader component.
+ */
 export function ImageLoader({
   url,
   alt,
@@ -21,7 +34,6 @@ export function ImageLoader({
   normalResolution,
   smallResolution,
 }: ImageLoaderProps) {
-  // Generate a lower-resolution placeholder
   const [imageLoaded, setImageLoaded] = useState(false);
 
   return (

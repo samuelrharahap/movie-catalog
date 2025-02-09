@@ -15,9 +15,18 @@ interface SeriesSeasonsProps {
   seasons: Season[];
 }
 
+/**
+ * Component to display the seasons and episodes of a series.
+ *
+ * @param {SeriesSeasonsProps} props - The properties for the component.
+ * @param {number} props.seriesId - The ID of the series.
+ * @param {Array} props.seasons - The list of seasons for the series.
+ *
+ * @returns {JSX.Element | null} The rendered component or null if there are no seasons.
+ */
 export default function SeriesSeasons({ seriesId, seasons }: SeriesSeasonsProps) {
   const [activeSeason, setActiveSeason] = useState(seasons[0]?.season_number ?? 1);
-  const { data, isLoading } = useSeriesSeason(seriesId, activeSeason);
+  const { data, isLoading, isError } = useSeriesSeason(seriesId, activeSeason);
 
   if (!seasons || !seasons.length) return null;
 
@@ -37,6 +46,8 @@ export default function SeriesSeasons({ seriesId, seasons }: SeriesSeasonsProps)
       </div>
       {isLoading ? (
         <SeriesSeasonLoader />
+      ) : isError ? (
+        <p>Error loading data</p>
       ) : (
         <div className="flex flex-col gap-10">
           {data?.episodes?.map((episode) => (

@@ -30,6 +30,17 @@ const getBackdropSize = () => {
   return 'w300'; // Small screens
 };
 
+/**
+ * TopBanner component displays a banner with an image, title, metadata, and action buttons.
+ * It adjusts the backdrop image size based on the window width.
+ *
+ * @param {TopBannerProps} props - The properties for the TopBanner component.
+ * @param {object} props.item - The item to display in the banner. It can be a movie or TV show.
+ * @param {number} props.index - The index of the item in the list.
+ * @param {boolean} props.inDetailPage - Flag indicating if the banner is displayed on a detail page.
+ *
+ * @returns {JSX.Element} The rendered TopBanner component.
+ */
 export default function TopBanner({ item, index, inDetailPage }: TopBannerProps) {
   // Update backdrop size based on window width on client
   const [backdropSize, setBackdropSize] = useState('w300'); // Default size

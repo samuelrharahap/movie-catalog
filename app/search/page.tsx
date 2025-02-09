@@ -7,16 +7,26 @@ import { useTrendingAll } from '@/hooks/useTrending';
 
 import ListTitleGrid from '@/components/ListTitleGrid';
 
+/**
+ * SearchPage component renders a search input and displays search results for movies and TV series.
+ * If no search keyword is provided, it displays trending content.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered SearchPage component.
+ */
 export default function SearchPage() {
   const [keyword, setKeyword] = useState('');
 
+  // Default content if no search keyword is provided
   const { data: trendingAll } = useTrendingAll();
+
   const {
     data: movies,
     isLoading: isLoadingMovies,
     isError: isErrorMovies,
     isFetched: isFetchedMovies,
   } = useSearchTitles({ keyword, type: 'movie' });
+
   const {
     data: series,
     isLoading: isLoadingSeries,

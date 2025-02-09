@@ -1,7 +1,24 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+/**
+ * The `SideBar` component renders a sidebar navigation menu for this application.
+ * It includes a logo at the top and a navigation menu with links to different sections of the app.
+ *
+ * @returns {JSX.Element} The rendered sidebar component.
+ */
 export function SideBar() {
+  const menu = [
+    { href: '/search', src: '/icon-search.svg', alt: 'search', text: 'Search' },
+    { href: '/', src: '/icon-home.svg', alt: 'home', text: 'Home' },
+    {
+      href: '/watchlist',
+      src: '/icon-watch-list.svg',
+      alt: 'watch-list',
+      text: 'Watch list',
+    },
+  ];
+
   return (
     <div className="sidebar__container">
       <div className="sidebar__logo">
@@ -11,42 +28,20 @@ export function SideBar() {
       </div>
       <nav>
         <ul className="sidebar__nav">
-          <li>
-            <Link href="/search" className="sidebar__nav-link">
-              <Image
-                src="/icon-search.svg"
-                className="sidebar__icon"
-                alt="search"
-                width={24}
-                height={24}
-              />
-              <span>Search</span>
-            </Link>
-          </li>
-          <li>
-            <Link href="/" className="sidebar__nav-link">
-              <Image
-                src="/icon-home.svg"
-                className="sidebar__icon"
-                alt="search"
-                width={24}
-                height={24}
-              />
-              <span>Home</span>
-            </Link>
-          </li>
-          <li>
-            <Link href="/watchlist" className="sidebar__nav-link">
-              <Image
-                src="/icon-watch-list.svg"
-                className="sidebar__icon"
-                alt="watch-list"
-                width={24}
-                height={24}
-              />
-              <span>Watch list</span>
-            </Link>
-          </li>
+          {menu.map((item, index) => (
+            <li key={index}>
+              <Link href={item.href} className="sidebar__nav-link">
+                <Image
+                  src={item.src}
+                  className="sidebar__icon"
+                  alt={item.alt}
+                  width={24}
+                  height={24}
+                />
+                <span>{item.text}</span>
+              </Link>
+            </li>
+          ))}
         </ul>
         <div className="sidebar__background"></div>
       </nav>

@@ -1,3 +1,9 @@
+/**
+ * A functional component that renders a list of shimmer loading placeholders.
+ * This component is used as a loading state for a list of titles in a slider.
+ *
+ * @returns {JSX.Element} A list of shimmer loading placeholders.
+ */
 export default function ListTitleSliderLoader() {
   return (
     <ul className="list-title-slider__container">

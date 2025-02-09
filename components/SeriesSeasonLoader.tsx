@@ -1,4 +1,11 @@
-export default function ListTitleLoader() {
+/**
+ * A functional component that renders a loading skeleton for a list of series seasons.
+ * This component displays a shimmer effect to indicate loading state for each episode's image,
+ * title, metadata, and overview.
+ *
+ * @returns {JSX.Element} A JSX element representing the loading skeleton for series seasons.
+ */
+export default function SeriesSeasonLoader() {
   return (
     <div className="flex flex-col gap-6">
       {Array.from({ length: 10 }).map((_, index) => (

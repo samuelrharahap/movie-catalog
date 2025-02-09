@@ -16,6 +16,17 @@ interface TitleHoverCardProps {
   isRightMost: boolean;
 }
 
+/**
+ * A component that displays a hover card with title information.
+ *
+ * @param {Object} props - The properties object.
+ * @param {Object} props.item - The item to display in the hover card.
+ * @param {boolean} props.active - Indicates if the hover card is active.
+ * @param {boolean} props.isLeftMost - Indicates if the hover card is the leftmost card.
+ * @param {boolean} props.isRightMost - Indicates if the hover card is the rightmost card.
+ *
+ * @returns {JSX.Element} The rendered hover card component.
+ */
 export default function TitleHoverCard({
   item,
   active,

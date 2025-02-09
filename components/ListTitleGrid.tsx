@@ -11,6 +11,17 @@ interface ListTitleProps {
   showRemoveWatchlist?: boolean;
 }
 
+/**
+ * Component to display a list of titles in a grid format.
+ *
+ * @param {Object} props - The component props.
+ * @param {Array} props.data - The array of title data to display.
+ * @param {boolean} props.isLoading - Flag indicating if the data is currently loading.
+ * @param {boolean} props.isError - Flag indicating if there was an error loading the data.
+ * @param {boolean} props.showRemoveWatchlist - Flag indicating if the remove watchlist button should be shown.
+ *
+ * @returns {JSX.Element} The rendered component.
+ */
 export default function ListTitle({
   data,
   isLoading,

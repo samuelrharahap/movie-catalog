@@ -17,6 +17,16 @@ const ITEMS_PER_SCROLL = 5; // Number of items per scroll
 const ITEM_GAP = 7; // Gap between items (in pixels)
 const EXCLUDE_GAP = 2 * ITEM_GAP; // Gap in the beginning and end of the list
 
+/**
+ * A component that displays a horizontally scrollable list of titles with pagination controls.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {boolean} props.isLoading - Indicates if the data is currently loading.
+ * @param {boolean} props.isError - Indicates if there was an error loading the data.
+ * @param {Array} props.data - The array of data to be displayed in the slider.
+ * @returns {JSX.Element} The rendered ListTitleSlider component.
+ */
 export default function ListTitleSlider({ isLoading, isError, data }: ListTitleSliderProps) {
   const viewPortRef = useRef<HTMLDivElement>(null);
   const itemRef = useRef<HTMLLIElement>(null); // Reference to a single item to get the width
