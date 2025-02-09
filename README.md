@@ -74,5 +74,5 @@ npm run test:coverage  # Run tests and generate coverage report
 -   **Vitest + @testing-library/react** (for unit testing)
 -   **The Movie Database API** (for movie data)
 
-## 📌 Live Application
+## 🖥️ Live Application
 - https://movie-catalog-taupe.vercel.app/
