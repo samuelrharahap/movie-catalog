@@ -51,7 +51,7 @@ export default function SeriesSeasons({ seriesId, seasons }: SeriesSeasonsProps)
       ) : (
         <div className="flex flex-col gap-10">
           {data?.episodes?.map((episode) => (
-            <div className="flex gap-6" key={episode.id}>
+            <div className="series-seasons__episode-container" key={episode.id}>
               <div>
                 <div className="series-seasons__episode-image">
                   {episode.still_path ? (

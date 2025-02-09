@@ -301,10 +301,9 @@ li {
 
 .top-banner__caption {
   position: absolute;
-  bottom: 25%;
+  bottom: 50px;
   left: 100px;
   max-width: 430px;
-  padding: var(--default-spacing);
   z-index: 1;
   display: flex;
   flex-direction: column;
@@ -340,9 +339,12 @@ li {
   line-height: 1.5rem;
   font-weight: 500;
   color: var(--foreground-secondary);
-  max-height: calc(1.5rem * 4); /* Limit to 4 lines */
   overflow: hidden;
   text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
 }
 
 .home-banner__rating,
@@ -468,6 +470,11 @@ li {
   background: linear-gradient(to left, #0f1014, transparent);
 }
 
+.list-title-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
 .hover-card {
   position: absolute;
   cursor: pointer;
@@ -542,12 +549,14 @@ li {
 }
 
 .hover-card__content-overview {
-  display: block;
-  max-height: calc(1.5rem * 4); /* Limit to 4 lines */
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 1.5rem;
   position: relative;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
   color: var(--foreground-secondary);
 }
 
@@ -632,6 +641,11 @@ li {
   color: var(--foreground);
 }
 
+.series-seasons__episode-container {
+  display: flex;
+  gap: 2rem;
+}
+
 .series-seasons__episode-image {
   aspect-ratio: 16 / 9;
   position: relative;
@@ -642,7 +656,9 @@ li {
 
 .series-seasons__episode-title {
   font-size: 1.1rem;
+  line-height: 1.3rem;
   font-weight: 600;
+  padding-right: var(--default-spacing);
 }
 
 .series-seasons__episode-overview {
@@ -650,6 +666,7 @@ li {
   font-size: 1.01rem;
   max-width: 600px;
   color: var(--foreground-secondary);
+  padding-right: var(--default-spacing);
 }
 
 .series-seasons__episode-metadata {
@@ -657,4 +674,125 @@ li {
   gap: 0.5rem;
   align-items: center;
   font-weight: 600;
+  padding-right: var(--default-spacing);
+}
+
+@media (max-width: 1199px) {
+  .top-banner__title {
+    font-size: 2rem;
+  }
+
+  .top-banner__overview {
+    line-height: 1.2rem;
+  }
+
+  .main-container {
+    padding: 30px 100px;
+  }
+}
+
+@media (max-width: 1023px) {
+  body {
+    font-size: 12px;
+  }
+
+  .home-banner__pagination {
+    width: 48px;
+  }
+
+  .home-banner__pagination > img {
+    width: 100%;
+    height: auto;
+  }
+
+  .button {
+    padding: 0.75rem;
+  }
+
+  .button.button-add-to-watch-list {
+    padding: 0.565rem;
+  }
+
+  .top-banner__caption {
+    max-width: 300px;
+    gap: 0.5rem;
+  }
+
+  .top-banner__title {
+    font-size: 1.5rem;
+  }
+
+  .top-banner__overview {
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+
+  .list-title-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .search-box {
+    padding: 0.75rem;
+    font-size: 1rem;
+  }
+
+  .hover-card {
+    width: 250px;
+  }
+
+  .hover-card__content-title {
+    font-size: 0.75rem;
+  }
+
+  .hover-card__content-overview {
+    line-height: 1rem;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+
+  .detail__link {
+    padding: 1.5rem 0;
+  }
+
+  .series-seasons__seasons {
+    padding: 1.5rem;
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .home-banner__pagination-container {
+    display: none;
+  }
+
+  .top-banner__caption {
+    max-width: 100%;
+    right: 100px;
+  }
+
+  .top-banner__overview {
+    display: none;
+  }
+
+  .list-title-slider__item {
+    flex: 0 0 20vw;
+  }
+
+  .list-title-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .series-seasons__episode-container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .series-seasons__episode-overview {
+    max-width: 100%;
+  }
+
+  .top-banner__image,
+  .top-banner__container {
+    aspect-ratio: 1 / 1;
+  }
 }

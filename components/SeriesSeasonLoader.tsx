@@ -9,7 +9,7 @@ export default function SeriesSeasonLoader() {
   return (
     <div className="flex flex-col gap-6">
       {Array.from({ length: 10 }).map((_, index) => (
-        <div className="flex gap-6" key={index}>
+        <div className="series-seasons__episode-container" key={index}>
           <div className="series-seasons__episode-image">
             <div className="shimmer aspect-ratio-2/3"></div>
           </div>
