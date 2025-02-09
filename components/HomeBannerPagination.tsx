@@ -12,6 +12,17 @@ interface HomeBannerPaginationProps {
   setActiveIndex: (index: number) => void;
 }
 
+/**
+ * HomeBannerPagination component renders a pagination control for a banner.
+ * It displays a list of items with clickable pagination indicators.
+ *
+ * @param {HomeBannerPaginationProps} props - The component props.
+ * @param {Array} props.items - The list of items to display in the pagination.
+ * @param {number} props.activeIndex - The index of the currently active item.
+ * @param {Function} props.setActiveIndex - The function to set the active index.
+ *
+ * @returns {JSX.Element} The rendered pagination component.
+ */
 export default function HomeBannerPagination({
   items,
   activeIndex,

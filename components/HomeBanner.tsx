@@ -5,6 +5,15 @@ import HomeBannerClient from '@/components/HomeBannerClient';
 const API_KEY = process.env.NEXT_API_KEY;
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
+/**
+ * Fetches the top-rated movies and TV series from the TMDB API.
+ *
+ * @returns {Promise<{ movies: Movie[], series: Series[] }>} An object containing arrays of top-rated movies and TV series.
+ * The movies array contains up to 3 top-rated movies, and the series array contains up to 2 top-rated TV series.
+ * If an error occurs during the fetch, both arrays will be empty.
+ *
+ * @throws {Error} Throws an error if the fetch requests fail.
+ */
 async function getTopRatedMoviesAndSeries() {
   try {
     const [moviesResponse, seriesResponse] = await Promise.all([
@@ -29,6 +38,14 @@ async function getTopRatedMoviesAndSeries() {
   }
 }
 
+/**
+ * HomeBanner component fetches top-rated movies and series, combines them into a single list,
+ * and renders the HomeBannerClient component with the combined list as a prop.
+ *
+ * @async
+ * @function
+ * @returns {JSX.Element} The HomeBannerClient component with the combined list of movies and series.
+ */
 export default async function HomeBanner() {
   const { movies, series } = await getTopRatedMoviesAndSeries();
   const items = [...movies, ...series];

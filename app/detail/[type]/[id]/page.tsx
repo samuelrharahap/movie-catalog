@@ -15,8 +15,8 @@ const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 async function getTopRatedMoviesAndSeries({ id, type }: DetailPageParams) {
   try {
     const response = await fetch(`${BASE_URL}/${type}/${id}?api_key=${API_KEY}`, {
-      cache: 'no-store',
-    });
+      next: { revalidate: 3600 },
+    }); // Cache for 1 hour
 
     if (!response.ok) {
       throw new Error('Failed to fetch data');
