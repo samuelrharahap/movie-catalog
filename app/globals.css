@@ -625,6 +625,7 @@ li {
   -ms-overflow-style: none;
   padding: 2rem;
   padding-left: 0;
+  cursor: pointer;
 }
 
 .series-seasons__season {

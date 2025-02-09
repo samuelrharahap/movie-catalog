@@ -34,14 +34,13 @@ export default function SeriesSeasons({ seriesId, seasons }: SeriesSeasonsProps)
     <div id="series-seasons" className="mb-10">
       <div className="series-seasons__seasons">
         {seasons.map((season) => (
-          <a
+          <span
             key={season.id}
-            href="#"
             className={`series-seasons__season ${activeSeason === season.season_number ? 'active' : ''}`}
             onClick={() => setActiveSeason(season.season_number)}
           >
             Season {season.season_number}
-          </a>
+          </span>
         ))}
       </div>
       {isLoading ? (
