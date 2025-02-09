@@ -80,6 +80,7 @@ export default function TitleItem({
       className={`title-item ${isHovered ? 'hovered' : ''}`}
       onMouseEnter={() => onMouseEnter()}
       onMouseLeave={() => onMouseLeave()}
+      data-testid="poster"
     >
       <div className="aspect-ratio-2/3 relative">
         {data.poster_path ? (

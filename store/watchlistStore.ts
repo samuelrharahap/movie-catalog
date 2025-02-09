@@ -4,7 +4,7 @@ import { Movie, Series } from '@/types/movies';
 import type { WatchlistStore } from '@/types/watchlistStore';
 import { create } from 'zustand';
 
-const WATCHLIST_KEY = 'user_watchlist';
+export const WATCHLIST_KEY = 'user_watchlist';
 
 export const getType = (item: Movie | Series) =>
   item.media_type ?? ('title' in item ? 'movie' : 'tv');

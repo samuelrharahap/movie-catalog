@@ -19,9 +19,21 @@ export default function ButtonAddToWatchList({ item, size = '' }: ButtonAddToWat
       onClick={() => toggleWatchlist(item)}
     >
       {isInWatchlist(item) ? (
-        <Image src="/icon-check.svg" alt="check" width={24} height={24} />
+        <Image
+          src="/icon-check.svg"
+          alt="check"
+          width={24}
+          height={24}
+          data-testid="button-remove-watchlist"
+        />
       ) : (
-        <Image src="/icon-plus.svg" alt="plus" width={24} height={24} />
+        <Image
+          src="/icon-plus.svg"
+          alt="plus"
+          width={24}
+          height={24}
+          data-testid="button-add-watchlist"
+        />
       )}
     </button>
   );
