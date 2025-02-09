@@ -517,6 +517,7 @@ li {
   border-top-right-radius: 0.5rem;
   border-top-left-radius: 0.5rem;
   overflow: hidden;
+  background-color: var(--secondary-background);
 }
 
 .hover-card__content {

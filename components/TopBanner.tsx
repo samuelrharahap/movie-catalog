@@ -21,7 +21,7 @@ interface TopBannerProps {
 const IMAGE_BASE_URL = process.env.NEXT_PUBLIC_TMDB_IMAGE_BASE_URL;
 
 const getBackdropSize = () => {
-  if (typeof window === 'undefined') return 'w1280'; // Default SSR safe value
+  if (typeof window === 'undefined') return 'w300'; // Default SSR safe value
 
   const width = window.innerWidth;
   if (width > 1600) return 'original'; // Ultra-wide screens
@@ -32,7 +32,7 @@ const getBackdropSize = () => {
 
 export default function TopBanner({ item, index, inDetailPage }: TopBannerProps) {
   // Update backdrop size based on window width on client
-  const [backdropSize, setBackdropSize] = useState('w1280'); // Default size
+  const [backdropSize, setBackdropSize] = useState('w300'); // Default size
   useEffect(() => {
     const updateSize = () => {
       setBackdropSize(getBackdropSize());

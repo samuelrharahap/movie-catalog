@@ -27,7 +27,7 @@ export default function HomeBannerPagination({
         >
           {item.backdrop_path ? (
             <Image
-              src={`${IMAGE_BASE_URL}/w300${item.backdrop_path}`}
+              src={`${IMAGE_BASE_URL}/w92${item.backdrop_path}`}
               alt={'title' in item ? item.title : item.name}
               width={74}
               height={42}

@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 
-import Image from 'next/image';
-
 import type { Movie, Series } from '@/types/movies';
 
 import ButtonAddToWatchList from '@/components/ButtonAddToWatchList';
 import ButtonDetail from '@/components/ButtonDetail';
+import { ImageLoader } from '@/components/ImageLoader';
 
 import { getYearFromDate } from '@/utils/date';
 import { formatNumber, toFixed } from '@/utils/number';
@@ -16,8 +15,6 @@ interface TitleHoverCardProps {
   isLeftMost: boolean;
   isRightMost: boolean;
 }
-
-const IMAGE_BASE_URL = process.env.NEXT_PUBLIC_TMDB_IMAGE_BASE_URL;
 
 export default function TitleHoverCard({
   item,
@@ -48,10 +45,11 @@ export default function TitleHoverCard({
     >
       <div className="hover-card__image">
         {item.backdrop_path ? (
-          <Image
-            src={`${IMAGE_BASE_URL}/w300${item.backdrop_path}`}
+          <ImageLoader
+            url={item.backdrop_path}
+            smallResolution="w45"
+            normalResolution="w500"
             alt={title}
-            fill
             sizes="14vw"
             style={{ objectFit: 'cover' }}
           />

@@ -1,9 +1,8 @@
 import { useRef, useState } from 'react';
 
-import Image from 'next/image';
-
 import type { Movie, Series } from '@/types/movies';
 
+import { ImageLoader } from '@/components/ImageLoader';
 import TitleHoverCard from '@/components/TitleHoverCard';
 
 interface TitleItem {
@@ -14,7 +13,6 @@ interface TitleItem {
   isShowingNextButton?: boolean;
 }
 
-const IMAGE_BASE_URL = process.env.NEXT_PUBLIC_TMDB_IMAGE_BASE_URL;
 const START_POSITION = 100;
 const GAP_AREA = 10;
 
@@ -85,10 +83,11 @@ export default function TitleItem({
     >
       <div className="aspect-ratio-2/3 relative">
         {data.poster_path ? (
-          <Image
-            src={`${IMAGE_BASE_URL}/w342${data.poster_path}`}
+          <ImageLoader
+            url={data.poster_path}
+            smallResolution="w45"
+            normalResolution="w342"
             alt={'title' in data ? data.title : (data as Series).name}
-            fill
             sizes="14vw"
           />
         ) : (
