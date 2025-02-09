@@ -1,5 +1,6 @@
 import { Movie, Series } from '@/types/movies';
 
+import Recommendations from '@/components/Recommendations';
 import SeriesSeasons from '@/components/SeriesSeasons';
 import TopBanner from '@/components/TopBanner';
 
@@ -38,12 +39,27 @@ export default async function DetailPage(props: { params: Promise<DetailPagePara
     return <p>No data found</p>;
   }
 
+  const isHasSeasons = !!(type === 'tv' && 'seasons' in data && data.seasons);
+
   return (
     <div>
       <TopBanner item={data} index={0} inDetailPage />
-      {type === 'tv' && 'seasons' in data && data.seasons && (
-        <SeriesSeasons seasons={data.seasons} seriesId={data.id} />
-      )}
+      <div className="detail__container">
+        <div className="detail__link-container">
+          {isHasSeasons && (
+            <a href="#series-seasons" className="detail__link">
+              Episodes
+            </a>
+          )}
+          <a href="#recommendations" className="detail__link ">
+            More Like This
+          </a>
+        </div>
+        {isHasSeasons && data.seasons && (
+          <SeriesSeasons seasons={data.seasons} seriesId={data.id} />
+        )}
+        <Recommendations type={type} id={data.id} />
+      </div>
     </div>
   );
 }

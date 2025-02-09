@@ -25,7 +25,7 @@ export default function SeriesSeasons({ seriesId, seasons }: SeriesSeasonsProps)
   if (!seasons || !seasons.length) return null;
 
   return (
-    <div className="series-seasons__container">
+    <div id="series-seasons" className="mb-10">
       <div className="series-seasons__seasons">
         {seasons.map((season) => (
           <a
@@ -48,7 +48,7 @@ export default function SeriesSeasons({ seriesId, seasons }: SeriesSeasonsProps)
                 <div className="series-seasons__episode-image">
                   {episode.still_path ? (
                     <Image
-                      src={`${IMAGE_BASE_URL}/w185${episode.still_path}`}
+                      src={`${IMAGE_BASE_URL}/w342${episode.still_path}`}
                       alt={episode.name}
                       fill
                       sizes="14vw"

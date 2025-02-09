@@ -86,7 +86,7 @@ export default function TitleItem({
       <div className="aspect-ratio-2/3 relative">
         {data.poster_path ? (
           <Image
-            src={`${IMAGE_BASE_URL}/w185${data.poster_path}`}
+            src={`${IMAGE_BASE_URL}/w342${data.poster_path}`}
             alt={'title' in data ? data.title : (data as Series).name}
             fill
             sizes="14vw"

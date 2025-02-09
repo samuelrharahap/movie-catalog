@@ -15,11 +15,13 @@ export default function SearchPage() {
     data: movies,
     isLoading: isLoadingMovies,
     isError: isErrorMovies,
+    isFetched: isFetchedMovies,
   } = useSearchTitles({ keyword, type: 'movie' });
   const {
     data: series,
     isLoading: isLoadingSeries,
     isError: isErrorSeries,
+    isFetched: isFetchedSeries,
   } = useSearchTitles({ keyword, type: 'tv' });
 
   return (
@@ -34,13 +36,13 @@ export default function SearchPage() {
         <>
           <h2 className="text-base mb-4">Movies</h2>
           <ListTitleGrid
-            isLoading={isLoadingMovies}
+            isLoading={!isFetchedMovies || isLoadingMovies}
             isError={isErrorMovies}
             data={movies?.results || []}
           />
           <h2 className="text-base mb-4 mt-8">Series</h2>
           <ListTitleGrid
-            isLoading={isLoadingSeries}
+            isLoading={!isFetchedSeries || isLoadingSeries}
             isError={isErrorSeries}
             data={series?.results || []}
           />
