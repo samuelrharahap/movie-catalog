@@ -8,8 +8,8 @@ const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 async function getTopRatedMoviesAndSeries() {
   try {
     const [moviesResponse, seriesResponse] = await Promise.all([
-      fetch(`${BASE_URL}/movie/top_rated?api_key=${API_KEY}`, { cache: 'no-store' }),
-      fetch(`${BASE_URL}/tv/top_rated?api_key=${API_KEY}`, { cache: 'no-store' }),
+      fetch(`${BASE_URL}/movie/top_rated?api_key=${API_KEY}`, { next: { revalidate: 3600 } }), // Cache for 1 hour
+      fetch(`${BASE_URL}/tv/top_rated?api_key=${API_KEY}`, { next: { revalidate: 3600 } }),
     ]);
 
     if (!moviesResponse.ok || !seriesResponse.ok) {

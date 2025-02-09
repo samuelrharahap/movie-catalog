@@ -44,17 +44,23 @@ export default function TopBanner({ item, index, inDetailPage }: TopBannerProps)
     return () => window.removeEventListener('resize', updateSize);
   }, []);
 
+  const totalSeasons = 'seasons' in item ? item.seasons?.length : 0;
+
   return (
     <div className="top-banner__container">
       <div className="top-banner__image">
-        <Image
-          src={`${IMAGE_BASE_URL}/${backdropSize}${item.backdrop_path}`}
-          alt={'title' in item ? item.title : item.name}
-          fill
-          style={{ objectFit: 'cover' }}
-          priority={index === 0} // Prioritize first item
-          sizes="100vw"
-        />
+        {item.backdrop_path ? (
+          <Image
+            src={`${IMAGE_BASE_URL}/${backdropSize}${item.backdrop_path}`}
+            alt={'title' in item ? item.title : item.name}
+            fill
+            style={{ objectFit: 'cover' }}
+            priority={index === 0} // Prioritize first item
+            sizes="100vw"
+          />
+        ) : (
+          <div className="not-found-image">No Image</div>
+        )}
       </div>
       <div className="top-banner__overlay">
         <div className="top-banner__caption">
@@ -71,12 +77,25 @@ export default function TopBanner({ item, index, inDetailPage }: TopBannerProps)
             <span className="top-banner__rating">
               {toFixed(item.vote_average)} ({formatNumber(item.vote_count)} users)
             </span>
+            {inDetailPage && !!totalSeasons && (
+              <>
+                <span className="circle-divider"></span>
+                <span>
+                  {totalSeasons} {totalSeasons > 1 ? 'Seasons' : 'Season'}
+                </span>
+              </>
+            )}
           </div>
           <p className="top-banner__overview">{item.overview}</p>
           <div className="flex w-full items-center gap-2">
             {!inDetailPage && <ButtonDetail id={item.id} type={'title' in item ? 'movie' : 'tv'} />}
             <ButtonAddToWatchList item={item} />
           </div>
+          {inDetailPage && (
+            <div className="top-banner__meta">
+              {item.genres?.map((genre) => genre.name).join(', ')}
+            </div>
+          )}
         </div>
       </div>
     </div>
